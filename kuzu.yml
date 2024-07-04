@@ -40,3 +40,81 @@ TRANSLATOR:
       - { transform: export }
     private:
       - { transform: unexport }
+  PtrTips:
+    function:
+      - {
+          target: "_get_(blob|bool|date|double|float|interval|string|(timestamp(_[a-z]+)?)|(u?int\\d+))$",
+          tips: [ref],
+        }
+      - { target: _get_(id|label)_val, tips: [ref] }
+      - { target: _get_property_size, tips: [ref] }
+      - { target: "_to_string$", tips: [ref] }
+      - { target: ^kuzu_database_destroy, tips: [ref] }
+      - { target: ^kuzu_connection_(destroy|init), tips: [ref] }
+      - { target: ^kuzu_connection_get_max_num_thread_for_exec, tips: [ref] }
+      - { target: ^kuzu_connection_set_max_num_thread_for_exec, tips: [ref, 0] }
+      - { target: ^kuzu_connection_execute, tips: [ref, ref] }
+      - { target: ^kuzu_connection_interrupt, tips: [ref] }
+      - { target: ^kuzu_connection_(prepare|query), tips: [ref, 0] }
+      - { target: ^kuzu_connection_set_query_timeout, tips: [ref, 0] }
+      - { target: ^kuzu_data_type_clone, tips: [ref] }
+      - { target: ^kuzu_data_type_create, tips: [0, ref, 0] }
+      - { target: ^kuzu_data_type_destroy, tips: [ref] }
+      - { target: ^kuzu_data_type_equals, tips: [ref, ref] }
+      - { target: "^kuzu_data_type_get_", tips: [ref] }
+      - { target: ^kuzu_flat_tuple_destroy, tips: [ref] }
+      - { target: ^kuzu_flat_tuple_get_value, tips: [ref, 0] }
+      - { target: ^kuzu_node_val_get_property_size, tips: [ref] }
+      - {
+          target: "^kuzu_node_val_get_property_(name|value)_at$",
+          tips: [ref, 0],
+        }
+      - { target: ^kuzu_prepared_statement_destroy, tips: [ref] }
+      - {
+          target: ^kuzu_prepared_statement_allow_active_transaction,
+          tips: [ref],
+        }
+      - { target: ^kuzu_prepared_statement_is_success, tips: [ref] }
+      - { target: ^kuzu_prepared_statement_get_error_message, tips: [ref] }
+      - {
+          target: "^kuzu_prepared_statement_bind_(bool|date|double|float|interval|string|(timestamp(_[a-z]+)?)|(u?int\\d+))$",
+          tips: [ref, 0, 0],
+        }
+      - { target: ^kuzu_prepared_statement_bind_value, tips: [ref, 0, ref] }
+      - { target: ^kuzu_query_result_destroy, tips: [ref] }
+      - { target: ^kuzu_query_result_is_success, tips: [ref] }
+      - { target: ^kuzu_query_result_get_error_message, tips: [ref] }
+      - { target: ^kuzu_query_result_get_num_columns, tips: [ref] }
+      - {
+          target: ^kuzu_query_result_get_column_(name|data_type),
+          tips: [ref, 0],
+        }
+      - { target: ^kuzu_query_result_get_num_tuples, tips: [ref] }
+      - { target: ^kuzu_query_result_get_query_summary, tips: [ref] }
+      - { target: ^kuzu_query_result_(get|has)_next, tips: [ref] }
+      - { target: ^kuzu_query_result_reset_iterator, tips: [ref] }
+      - { target: ^kuzu_query_summary_destroy, tips: [ref] }
+      - {
+          target: "^kuzu_query_summary_get_(compiling|execution)_time",
+          tips: [ref],
+        }
+      - { target: ^kuzu_rdf_variant_get_type, tips: [ref] }
+      - { target: ^kuzu_rel_val_get_(dst|label)_id_val, tips: [ref] }
+      - { target: ^kuzu_rel_val_get_property_(name|value)_at, tips: [ref, 0] }
+      - { target: ^kuzu_rel_val_get_src_id_val, tips: [ref] }
+      - { target: ^kuzu_value_clone, tips: [ref] }
+      - { target: ^kuzu_value_copy, tips: [ref, ref] }
+      - { target: ^kuzu_value_create_default, tips: [ref] }
+      - { target: ^kuzu_value_create_null_with_data_type, tips: [ref] }
+      - { target: ^kuzu_value_destroy, tips: [ref] }
+      - { target: ^kuzu_value_get_data_type, tips: [ref] }
+      - { target: ^kuzu_value_get_internal_id, tips: [ref] }
+      - { target: ^kuzu_value_get_list_element, tips: [ref, 0] }
+      - { target: ^kuzu_value_get_list_size, tips: [ref] }
+      - { target: ^kuzu_value_get_recursive_rel_node_list, tips: [ref] }
+      - { target: ^kuzu_value_get_recursive_rel_rel_list, tips: [ref] }
+      - { target: ^kuzu_value_get_struct_num_fields, tips: [ref] }
+      - { target: ^kuzu_value_get_struct_field_(name|value), tips: [ref, 0] }
+      - { target: ^kuzu_value_get_uuid, tips: [ref] }
+      - { target: ^kuzu_value_is_null, tips: [ref] }
+      - { target: ^kuzu_value_set_null, tips: [ref, 0] }

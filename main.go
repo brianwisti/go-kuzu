@@ -24,28 +24,24 @@ func main() {
 	log.Info("Connecting to database at", dbPath)
 	systemConfig := kuzu.DefaultSystemConfig()
 	db := kuzu.DatabaseInit(dbPath, systemConfig)
-	databases := []kuzu.Database{*db}
-	conn := kuzu.ConnectionInit(databases)
-	connections := []kuzu.Connection{*conn}
+	conn := kuzu.ConnectionInit(db)
 	log.Info("Database connected")
 	queryString := "match (p:Page) return count(p)"
 	log.Info("Querying database with: ", queryString)
-	queryResult := kuzu.ConnectionQuery(connections, queryString)
-	results := []kuzu.QueryResult{*queryResult}
+	queryResult := kuzu.ConnectionQuery(conn, queryString)
 
-	if kuzu.QueryResultHasNext(results) {
+	if kuzu.QueryResultHasNext(queryResult) {
 		log.Info("Results found")
-		row := kuzu.QueryResultGetNext(results)
-		rows := []kuzu.FlatTuple{*row}
-		value := kuzu.FlatTupleGetValue(rows, 0)
-		intValue := kuzu.ValueGetInt64([]kuzu.Value{*value})
+		row := kuzu.QueryResultGetNext(queryResult)
+		value := kuzu.FlatTupleGetValue(row, 0)
+		intValue := kuzu.ValueGetInt64(value)
 		log.Info("Value:", intValue)
 	} else {
 		log.Info("No results found")
 	}
 
-	kuzu.ConnectionDestroy(connections)
+	kuzu.ConnectionDestroy(conn)
 	log.Info("Database disconnected")
-	kuzu.DatabaseDestroy(databases)
+	kuzu.DatabaseDestroy(db)
 	log.Info("Database memory deallocated")
 }
